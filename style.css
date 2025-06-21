@@ -476,6 +476,8 @@ h2::after {
   align-items: center;
   background: #FFF8F0;
   scroll-snap-align: start;
+  justify-content: flex-start;
+  min-height: 100vh;
 }
 
 /* Заголовок-картинка */
@@ -903,6 +905,17 @@ h2::after {
 }
 
 /* Секция 8: Заголовок и обратный отсчёт */
+.page8{
+  height: auto;
+  min-height: 100vh; /* если нужно, чтобы хотя бы экран занимало */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 5rem;
+  background: url('images/SF2.jpg') center/cover no-repeat;
+  background-position: 50% 60%;
+}
 .page8__header-image {
   width: 100%;
   max-width: 360px;
@@ -938,8 +951,8 @@ h2::after {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #fff;
-  border: 2px solid #C49B67;
+  background: rgba(255, 255, 255, 0.447);
+  border: 2px solid #815d2f;
   border-radius: 8px;
   padding: 1rem 0;
   box-shadow: 0 4px 10px rgba(0,0,0,0.05);
@@ -947,13 +960,13 @@ h2::after {
 .page8__countdown-container .countdown-value {
   font-family: 'Didot', serif;
   font-size: 2.5rem;
-  color: #C49B67;
+  color: #815d2f;
   line-height: 1;
 }
 .page8__countdown-container .countdown-label {
   font-family: 'Felidae', sans-serif;
   font-size: 1rem;
-  color: #555;
+  color: #0c0c0c;
   margin-top: 0.25rem;
 }
 @media (max-width: 768px) {
@@ -965,13 +978,26 @@ h2::after {
   }
 }
 @media (max-width: 480px) {
-  .page8__countdown-container .countdown-grid {
-    grid-template-columns: 1fr;
+  .page8__countdown-container {
+    max-width: 100%; 
+    margin: 0 auto 1rem;
+    padding: 0 0.5rem;
   }
-  .page8__countdown-container .countdown-value {
-    font-size: 1.75rem;
+  .page8__countdown-container .countdown-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 0.5rem;
   }
   .page8__countdown-container .countdown-item {
-    padding: 0.75rem 0;
+    padding: 0.5rem 0;
+    background: rgba(255, 255, 255, 0.399);
+    border: 1px solid #815d2f;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+  .page8__countdown-container .countdown-value {
+    font-size: 1.5rem; 
+  }
+  .page8__countdown-container .countdown-label {
+    font-size: 0.85rem;
   }
 }
