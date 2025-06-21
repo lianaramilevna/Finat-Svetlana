@@ -1,0 +1,896 @@
+/* style.css */
+/* — Подключаем шрифты Antarctic и Felidae — */
+@font-face {
+  font-family: 'Antarctic';
+  src: url('fonts/Antarctic.woff2') format('woff2'),
+       url('fonts/Antarctic.otf') format('opentype');
+  font-weight: 400; font-style: normal;
+}
+@font-face {
+  font-family: 'Felidae';
+  src: url('fonts/Felidae.woff2') format('woff2'),
+       url('fonts/Felidae.ttf') format('truetype');
+  font-weight: 400; font-style: normal;
+}
+@font-face {
+  font-family: 'Didot';
+  src: url('fonts/Didot.woff2') format('woff2'),
+       url('fonts/Didot.otf') format('opentype');
+  font-weight: 400; font-style: normal;
+}
+
+/* — Сброс и фон — */
+* { margin:0; padding:0; box-sizing:border-box; }
+html, body {
+  height:100%;
+  overflow:hidden;
+  background:#FFF8F0;
+  font-family:'Felidae', sans-serif;
+  color:#333;
+  scroll-behavior: smooth;
+}
+
+/* — Скролл-прилипание — */
+.container {
+  height:100%;
+  overflow-y:auto;
+  scroll-snap-type: y proximity;
+}
+.snap-page {
+  scroll-snap-align: start;
+}
+
+/* — Базовый стиль секций — */
+.page {
+  position:relative;
+  height:100vh;
+  padding:2rem;
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+}
+
+/* — Заголовки — */
+h1, h2 {
+  font-family:'Didot', serif;
+  color:#222;
+  margin:0;
+}
+h1 {
+  font-size:5rem;
+  margin-bottom:0.5rem;
+}
+h2 {
+  font-size:2.5rem;
+  margin-bottom:1rem;
+}
+h2::after {
+  content:"";
+  display:block;
+  width:60px; height:3px;
+  margin:0.5rem auto;
+  background:#C49B67;
+}
+
+/* — Страница 1: фон-фото + затемнение — */
+.page1 {
+  position: relative;
+  height:100vh;
+  background: url('images/SF.jpg') center/cover no-repeat;
+  padding:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+}
+.page1::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 0;
+}
+.page1 h1 {
+  position: relative;
+  z-index: 1;
+  font-size: 6rem;
+  color: #fff;
+}
+.page1 .date {
+  position: relative;
+  z-index: 1;
+  font-size: 2rem;
+  color: #fff;
+}
+
+/* — Страница 2 — */
+.page2 {
+  /* padding остаётся */
+}
+.welcome-image {
+  width:560px;
+  max-width:90%;
+  margin:0 auto 1.5rem;
+}
+.welcome-image img {
+  width:100%;
+  height:auto;
+}
+.page2 p {
+  font-size:20px;
+  max-width:600px;
+  margin:0 auto 1rem;
+}
+/* Календарь */
+.calendar {
+  border:2px solid #C49B67;
+  border-radius:12px;
+  padding:1.2rem;
+  width:340px;
+  background:#fff;
+  box-shadow:0 4px 10px rgba(0,0,0,0.05);
+  font-family:'Didot', sans-serif;
+}
+.calendar .month {
+  font-family:'Didot', serif;
+  font-size:2.2rem;
+  margin-bottom:0.6rem;
+}
+.calendar .grid {
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  gap:0.3rem;
+  font-size:1rem;
+}
+.calendar .grid div {
+  padding:0.6rem 0;
+  color:#333;
+  font-weight:500;
+}
+.calendar .day-14 {
+  position:relative;
+  font-weight:700;
+  color:#C49B67;
+}
+.calendar .day-14::before {
+  content:"";
+  position:absolute;
+  top:50%; left:50%;
+  transform:translate(-50%,-50%);
+  width:2.6rem; height:2.6rem;
+  border:3px solid #C49B67;
+  border-radius:50%;
+}
+
+/* Секция 3: Программа дня */
+.page3 {
+  position: relative;
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+/* Фоновый полупрозрачный блок */
+.shape-big {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 700px;
+  height: 100vh;
+  background: rgba(196,155,103,0.1);
+  border-radius: 12px;
+  z-index: 0;
+  background-size: 100% auto;
+}
+/* Картинка вместо заголовка */
+.main-image {
+  position:absolute;
+  top:100px;
+  left:50%; transform:translateX(-50%);
+  width:360px;
+  z-index:1;
+}
+.main-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+/* Список расписания поверх фона */
+.schedule-list {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  column-gap: 1.5rem;
+  row-gap: 2rem;
+  width: 100%;
+  max-width: 700px;
+  margin-top: 200px;
+  margin-bottom: 2rem;
+  padding: 0 1rem;
+}
+.schedule-list .time {
+  font-family: 'Felidae', serif;
+  font-size: 2rem;
+  color: #C49B67;
+  text-align: right;
+  line-height: 1.2;
+  padding-right: 0.5rem;
+}
+.schedule-list .event .event-title {
+  font-family: 'Felidae', serif;
+  font-size: 2rem;
+  color: #222;
+  margin-bottom: 0.25rem;
+}
+.schedule-list .event .event-location {
+  font-family: 'Felidae', sans-serif;
+  font-style: italic;
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 0.5rem;
+}
+.schedule-list .event .event-desc {
+  font-family: 'Felidae', sans-serif;
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.5;
+}
+/* Адаптив: на узких экранах одна колонка */
+@media (max-width: 600px) {
+  .schedule-list {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0rem;
+    margin-top: 300px;
+  }
+  .schedule-list .time {
+    font-size: 1.2rem;
+    text-align: center;
+    margin-bottom: 0.25rem;
+    padding-right: 0;
+    color: #C49B67;
+  }
+  .schedule-list .event {
+    margin-bottom: 1.5rem;
+  }
+  .schedule-list .event-title {
+    font-size: 1.1rem;
+  }
+  .schedule-list .event-location,
+  .schedule-list .event-desc {
+    font-size: 0.95rem;
+  }
+}
+
+/* ---------- Секция 4: оформление страницы "Место" ---------- */
+.page4 {
+  position: relative;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #FFF8F0;
+  scroll-snap-align: start;
+}
+.page4__layout {
+  display: flex;
+  width: 100%;
+  position: relative;
+}
+.page4__bg {
+  flex: 1;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.6;
+  filter: brightness(0.8);
+  display: block;
+}
+.page4__bg--left {
+  background-image: url('images/fon2.jpg');
+}
+.page4__bg--right {
+  background-image: url('images/fon.jpg');
+}
+.page4__content {
+  flex: 0 0 100%;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  background: rgba(255, 248, 240, 0.95);
+  z-index: 2;
+  position: relative;
+}
+.page4__header-image {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 12px;
+}
+.page4__header-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+.page4__title {
+  font-family: 'Didot', serif;
+  font-size: 2rem;
+  color: #222;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+.page4__title::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: #C49B67;
+  margin: 0.5rem auto 0;
+}
+.page4__address {
+  font-family: 'Felidae', sans-serif;
+  font-size: 1.1rem;
+  font-style: italic;
+  color: #555;
+  margin: 0.25rem auto 1rem;
+  text-align: center;
+  max-width: 600px;
+}
+.page4__text {
+  font-family: 'Felidae', sans-serif;
+  font-size: 1rem;
+  color: #333;
+  text-align: center;
+  margin: 0 auto 1rem;
+  max-width: 600px;
+}
+.page4__link {
+  display: inline-block;
+  font-family: 'Didot', serif;
+  font-size: 1rem;
+  color: #C49B67;
+  text-decoration: none;
+  border: 2px solid #C49B67;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  transition: background-color 0.2s, color 0.2s;
+}
+.page4__link:hover {
+  background-color: #C49B67;
+  color: #fff;
+}
+.page4__map {
+  width: 100%;
+  max-width: 600px;
+  height: 200px;
+  margin: 0 auto 2rem;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+@media (max-width: 768px) {
+  .page4__layout {
+    flex-direction: column;
+  }
+  .page4__bg {
+    display: none;
+  }
+  .page4 {
+    padding: 1.5rem 1rem;
+  }
+  .page4__title {
+    font-size: 1.75rem;
+    margin-top: 1rem;
+  }
+  .page4__address {
+    font-size: 1rem;
+  }
+  .page4__text {
+    font-size: 0.95rem;
+  }
+  .page4__link {
+    font-size: 0.95rem;
+    padding: 0.4rem 0.8rem;
+  }
+  .page4__map {
+    height: 250px;
+  }
+}
+@media (max-width: 480px) {
+  .page4__layout {
+    flex-direction: column;
+  }
+  .page4__bg {
+    display: none;
+  }
+  .page4 {
+    padding: 1rem 0.5rem;
+  }
+  .page4__title {
+    font-size: 1.5rem;
+  }
+  .page4__address,
+  .page4__text {
+    font-size: 0.9rem;
+    margin: 0.25rem 0.5rem 1rem;
+  }
+  .page4__link {
+    font-size: 0.9rem;
+    padding: 0.3rem 0.6rem;
+  }
+  .page4__map {
+    height: 200px;
+  }
+}
+
+/* ---------- Секция 5: Дресс-код ---------- */
+.page5 {
+  position: relative;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #FFF8F0;
+  scroll-snap-align: start;
+}
+.page5__header-image {
+  width: 100%;
+  max-width: 360px;
+  margin: 0rem auto 0.5rem;
+  overflow: hidden;
+  border-radius: 0px;
+}
+.page5__header-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.page5__title {
+  font-family: 'Felidae', sans-serif;
+  font-size: 2rem;
+  color: #222;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+.page5__title::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: #C49B67;
+  margin: 0.5rem auto 0;
+}
+.page5__colors {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.page5__color-swatch {
+  width: 50px;
+  height: 50px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+.page5__note {
+  font-family: 'Felidae', sans-serif;
+  font-size: 1rem;
+  color: #333;
+  text-align: center;
+  margin-top: 1rem;
+  max-width: 600px;
+}
+.page5__note2 {
+  font-family: 'Didot', serif;
+  font-size: 1rem;
+  color: #333;
+  text-align: center;
+  margin-top: 1rem;
+  max-width: 600px;
+}
+.page5__examples {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  width: 100%;
+  max-width: 600px;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+  padding: 0 1rem;
+}
+.page5__example-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.page5__example-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  object-fit: cover;
+}
+.page5__example-caption {
+  font-family: 'Felidae', sans-serif;
+  font-size: 0.9rem;
+  color: #555;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+@media (max-width: 768px) {
+  .page5 {
+    padding: 1.5rem 1rem;
+  }
+  .page5__title {
+    font-size: 1.75rem;
+    margin-top: 1rem;
+  }
+  .page5__colors {
+    gap: 0.75rem;
+  }
+  .page5__color-swatch {
+    width: 40px;
+    height: 40px;
+  }
+  .page5__note {
+    font-size: 0.95rem;
+  }
+  .page5__examples {
+    gap: 0.75rem;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  }
+  .page5__example-caption {
+    font-size: 0.85rem;
+  }
+}
+@media (max-width: 480px) {
+  .page5 {
+    padding: 1rem 0.5rem;
+  }
+  .page5__title {
+    font-size: 1.5rem;
+  }
+  .page5__colors {
+    gap: 0.5rem;
+  }
+  .page5__color-swatch {
+    width: 35px;
+    height: 35px;
+  }
+  .page5__note {
+    font-size: 0.9rem;
+  }
+  .page5__examples {
+    grid-template-columns: 1fr;
+    margin-top: 1.5rem;
+  }
+  .page5__example-caption {
+    font-size: 0.8rem;
+  }
+}
+
+/* ---------- Секция 6: Пожелания  ---------- */
+.page6 {
+  position: relative;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #FFF8F0 url('images/decor3.png') no-repeat center;
+  background-size: 1500px 800px;
+  scroll-snap-align: start;
+}
+.page6__header-image {
+  width: 100%;
+  max-width: 360px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.page6__header-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+.page6__text-block {
+  max-width: 700px;
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-family: 'Felidae', sans-serif;
+  font-size: 18pt;
+  color: #000;
+  line-height: 1.6;
+}
+.page6__text-block p {
+  margin-bottom: 1rem;
+}
+
+.shape-big2 {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 500px;
+  background: rgba(196,155,103,0.1);
+  border-radius: 12px;
+  z-index: 0;
+}
+@media (max-width: 768px) {
+  .page6 {
+    background-image: none; 
+  }
+}
+
+@media (max-width: 480px) {
+  .page6 {
+    background-image: none; 
+  }
+}
+/* Секция RSVP формы */
+.page7 {
+  padding: 3rem 1rem;
+  background: #FFF8F0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.page7__header-image {
+  width: 100%;
+  max-width: 250px;
+  margin: 0rem auto 0.5rem;
+  overflow: hidden;
+  border-radius: 0px;
+}
+.page7__header-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.page7__text {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-family: 'Felidae', sans-serif;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+  color: #555;
+}
+#rsvp-form {
+  width: 100%;
+  max-width: 700px;
+  max-height: 600px;
+  background: #fff;
+  padding: 1rem 1rem;
+  border: 2px solid #eee;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  font-family: 'Felidae', sans-serif;
+}
+#rsvp-form label {
+  display: block;
+  margin-bottom: 1.5rem;
+  font-size: 1.2rem;
+  color: #333;
+}
+#rsvp-form input[type="text"],
+#rsvp-form select,
+#rsvp-form textarea {
+  width: 100%;
+  padding: 0.4rem 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  font-family: 'Felidae', sans-serif;
+  box-sizing: border-box;
+  background: #fff;
+}
+#rsvp-form textarea {
+  resize: vertical;
+}
+#rsvp-form button {
+  background-color: #C49B67;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-family: 'Felidae', sans-serif;
+  font-size: 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+#rsvp-form button:hover {
+  background-color: #b18750;
+}
+#success-message {
+  font-family: 'Felidae', sans-serif;
+  font-size: 1rem;
+  color: green;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+/* Модальное окно RSVP */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.modal-content {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  max-width: 90%;
+  width: 360px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  animation: fadeInScale 0.3s ease-out;
+}
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.modal-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  font-size: 1.25rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #333;
+  line-height: 1;
+}
+.modal-close:focus {
+  outline: 2px solid #C49B67;
+}
+.modal-message {
+  font-family: 'Felidae', sans-serif;
+  font-size: 1rem;
+  color: #222;
+  margin: 0 0 1rem;
+}
+#modal-ok-button {
+  padding: 0.5rem 1rem;
+  border: none;
+  background: #C49B67;
+  color: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: 'Felidae', sans-serif;
+}
+#modal-ok-button:hover {
+  background: #b18750;
+}
+#modal-ok-button:focus {
+  outline: 2px solid #333;
+}
+
+/* Адаптив */
+@media (max-width: 480px) {
+  .page7 {
+    padding: 2rem 1rem;
+  }
+  #rsvp-form {
+    padding: 1.5rem;
+  }
+  #rsvp-form label {
+    font-size: 0.95rem;
+  }
+  #rsvp-form button {
+    width: 100%;
+  }
+}
+
+/* Секция 8: Заголовок и обратный отсчёт */
+.page8__header-image {
+  width: 100%;
+  max-width: 360px;
+  margin: 1.5rem auto 1rem;
+  overflow: hidden;
+  border-radius: 12px;
+}
+.page8__header-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+.page8__text {
+  font-family: 'Felidae', sans-serif;
+  font-size: 1.2rem;
+  color: #333;
+  text-align: center;
+  margin: 0.5rem auto 1rem;
+  max-width: 600px;
+}
+.page8__countdown-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto 2rem;
+}
+.page8__countdown-container .countdown-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+.page8__countdown-container .countdown-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fff;
+  border: 2px solid #C49B67;
+  border-radius: 8px;
+  padding: 1rem 0;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+.page8__countdown-container .countdown-value {
+  font-family: 'Didot', serif;
+  font-size: 2.5rem;
+  color: #C49B67;
+  line-height: 1;
+}
+.page8__countdown-container .countdown-label {
+  font-family: 'Felidae', sans-serif;
+  font-size: 1rem;
+  color: #555;
+  margin-top: 0.25rem;
+}
+@media (max-width: 768px) {
+  .page8__countdown-container .countdown-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .page8__countdown-container .countdown-value {
+    font-size: 2rem;
+  }
+}
+@media (max-width: 480px) {
+  .page8__countdown-container .countdown-grid {
+    grid-template-columns: 1fr;
+  }
+  .page8__countdown-container .countdown-value {
+    font-size: 1.75rem;
+  }
+  .page8__countdown-container .countdown-item {
+    padding: 0.75rem 0;
+  }
+}
